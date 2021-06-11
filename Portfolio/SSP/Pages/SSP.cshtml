@@ -6,26 +6,31 @@
 <!DOCTYPE html>
 
 <html lang="de">
+
 <head>
-  <meta charset="utf-8" />
-  <title>Portfolio ASP.NET Nr. 2</title>
+    <meta charset="utf-8" />
+    <title>Portfolio ASP.NET Nr. 2</title>
 </head>
+
 <body>
-  <h1>Lass uns Schere, Stein, Papier spielen!</h1>
-  <h3>Mit wievielen Gesten sollen wir spielen?</h3>
+    <h1>Lass uns Schere, Stein, Papier spielen!</h1>
+    <h3>Mit wievielen Gesten sollen wir spielen?</h3>
     <form method="post">
-            <input type = "radio" name="gesten"  value="3"> 3<br />
-            <input type = "radio" name="gesten"  value="4"> 4<br />
-            <input type = "radio" name="gesten"  value="5"> 5<br />
+        <input type="radio" name="gesten" value="3"> 3<br />
+        <input type="radio" name="gesten" value="4"> 4<br />
+        <input type="radio" name="gesten" value="5"> 5<br />
         <br />
-        <input type="submit" Value = "Bestätigen"/>
+        <input type="submit" Value="Bestätigen" />
     </form>
 
 </body>
+
 </html>
 
-@if(@Request.Form["gesten"]=="3"){
-    <h3>Momentan wird mit 3 Gesten gespielt</h3>
+@if (@Request.Form["gesten"] != "")
+{
+
+    <h3>Momentan wird mit @Request.Form["gesten"] Gesten gespielt</h3>
     <table>
         <tr>
             <td>
@@ -33,10 +38,65 @@
             </td>
             <td>
                 <button value=1><img src="pictures/rock.png" width="160px" height="160px"></img></button>
-            </td> 
+            </td>
+            <td>
+                <button value=2><img src="pictures/paper.png" width="160px" height="160px"></img></button>
+            </td>
+            @if (@Request.Form["gesten"] == "4" || @Request.Form["gesten"]== "5")
+            {
+                <td>
+                    <button value=3><img src="pictures/match.png" width="160px" height="160px"></img></button>
+                </td>
+            }
+            @if (@Request.Form["gesten"] == "5")
+            {
+                <td>
+                    <button value=4><img src="pictures/well.png" width="160px" height="160px"></img></button>
+                </td>
+            }
+        </tr>
+    </table>
+}
+else if (@Request.Form["gesten"] == "4")
+{
+    <table>
+        <tr>
+            <td>
+                <button value=0><img src="pictures/scissor.png" width="160px" height="160px"></img></button>
+            </td>
+            <td>
+                <button value=1><img src="pictures/rock.png" width="160px" height="160px"></img></button>
+            </td>
             <td>
                 <button value=2><img src="pictures/paper.png" width="160px" height="160px"></img></button>
             </td>
         </tr>
     </table>
+
+}
+else if (@Request.Form["gesten"] == "5")
+{
+    <table>
+        <tr>
+            <td>
+                <button value=0><img src="pictures/scissor.png" width="160px" height="160px"></img></button>
+            </td>
+            <td>
+                <button value=1><img src="pictures/rock.png" width="160px" height="160px"></img></button>
+            </td>
+            <td>
+                <button value=2><img src="pictures/paper.png" width="160px" height="160px"></img></button>
+            </td>
+            <td>
+                <button value=3><img src="pictures/match.png" width="160px" height="160px"></img></button>
+            </td>
+            <td>
+                <button value=4><img src="pictures/well.png" width="160px" height="160px"></img></button>
+            </td>
+        </tr>
+    </table>
+}
+else
+{
+    <h2>Keine Anzahl Gesten Ausgewählt</h2>
 }
